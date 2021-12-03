@@ -5,8 +5,11 @@ import java.util.*;
 public class StudentList {
     public static void main(String[] args) {
 
+        if (args.length != 1 || args[0].length() != 1) {
+            System.out.println("Not a valid argument\nPlease enter only one Character argument");
+        }
         //		Check arguments
-        if (args[0].equals("a")) {
+        else if (args[0].equals("a")) {
             System.out.println("Loading data ...");
             try {
                 BufferedReader s = new BufferedReader(
