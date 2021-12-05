@@ -3,6 +3,27 @@ import java.text.*;
 import java.util.*;
 
 public class StudentList {
+    public static BufferedReader creatFileReadMode() {
+        try {
+            BufferedReader file = new BufferedReader(
+                    new InputStreamReader(
+                            new FileInputStream("students.txt")));
+            return file;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public static BufferedWriter creatFileWriteMode() {
+        try {
+            BufferedWriter file = new BufferedWriter(
+                    new FileWriter("students.txt", true));
+            return file;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
     public static void main(String[] args) {
 
         if (args.length != 1) {
@@ -12,9 +33,7 @@ public class StudentList {
         else if (args[0].equals("a")) {
             System.out.println("Loading data ...");
             try {
-                BufferedReader file = new BufferedReader(
-                        new InputStreamReader(
-                                new FileInputStream("students.txt")));
+                BufferedReader file = creatFileReadMode();
                 String line = file.readLine();
                 String words[] = line.split(",");
                 for (String word : words) {
@@ -26,23 +45,20 @@ public class StudentList {
         } else if (args[0].equals("r")) {
             System.out.println("Loading data ...");
             try {
-                BufferedReader file = new BufferedReader(
-                        new InputStreamReader(
-                                new FileInputStream("students.txt")));
+                BufferedReader file = creatFileReadMode();
                 String line = file.readLine();
                 System.out.println(line);
                 String words[] = line.split(",");
                 Random x = new Random();
                 int randIdx = x.nextInt();
-                System.out.println (words[randIdx]);
+                System.out.println(words[randIdx]);
             } catch (Exception e) {
             }
             System.out.println("Data Loaded.");
         } else if (args[0].contains("+")) {
             System.out.println("Loading data ...");
             try {
-                BufferedWriter file = new BufferedWriter(
-                        new FileWriter("students.txt", true));
+                BufferedWriter file = creatFileWriteMode();
                 String newData = args[0].substring(1);
                 Date d = new Date();
                 String df = "dd/mm/yyyy-hh:mm:ss a";
@@ -57,9 +73,7 @@ public class StudentList {
         } else if (args[0].contains("f")) {
             System.out.println("Loading data ...");
             try {
-                BufferedReader file = new BufferedReader(
-                        new InputStreamReader(
-                                new FileInputStream("students.txt")));
+                BufferedReader file = creatFileReadMode();
                 String line = file.readLine();
                 String words[] = line.split(",");
                 boolean done = false;
@@ -76,9 +90,7 @@ public class StudentList {
         } else if (args[0].contains("c")) {
             System.out.println("Loading data ...");
             try {
-                BufferedReader file = new BufferedReader(
-                        new InputStreamReader(
-                                new FileInputStream("students.txt")));
+                BufferedReader file = creatFileReadMode();
                 String line = file.readLine();
                 char charArray[] = line.toCharArray();
                 boolean in_word = false;
